@@ -1,5 +1,8 @@
 name: CI and Backup (Consolidated)
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
