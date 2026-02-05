@@ -8,8 +8,8 @@
  * - Visualization of hypergraph patterns
  */
 
-import { HypergraphGrammarEngine, createDefaultHypergraphGrammarConfig } from './hypergraph-grammar-engine';
-import { AgenticPrimitive } from './agentic-grammar/types';
+import { HypergraphGrammarEngine, createDefaultHypergraphGrammarConfig } from './hypergraph-grammar-engine.js';
+import { AgenticPrimitive } from './agentic-grammar/types.js';
 
 /**
  * Demo showcasing hypergraph grammar pattern encoding and neural-symbolic integration

@@ -6,23 +6,23 @@
  * parallel tensor operations.
  */
 
-import { CognitiveHypergraphImpl } from './hypergraph/cognitive-hypergraph';
-import { AgenticGrammarExtractor } from './agentic-grammar/extractor';
-import { makeTensor, randomTensor, addTensors, scaleTensor, dotProduct } from './tensor/operations';
+import { CognitiveHypergraphImpl } from './hypergraph/cognitive-hypergraph.js';
+import { AgenticGrammarExtractor } from './agentic-grammar/extractor.js';
+import { makeTensor, randomTensor, addTensors, scaleTensor, dotProduct } from './tensor/operations.js';
 import { 
   AgenticPrimitive, 
   AgenticPrimitiveType, 
   GrammarToken,
   GgmlKernel,
   AgenticGrammarConfig
-} from './agentic-grammar/types';
+} from './agentic-grammar/types.js';
 import { 
   CognitiveNode, 
   CognitiveEdge, 
   Tensor, 
   TensorShape,
   CognitiveHypergraph 
-} from './types';
+} from './types.js';
 
 /**
  * Hypergraph pattern for encoding grammar rules

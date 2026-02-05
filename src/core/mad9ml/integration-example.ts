@@ -11,9 +11,9 @@ import {
   type HypergraphPattern,
   type PatternMatchResult,
   type AnalysisMetrics
-} from './hypergraph-grammar-engine';
+} from './hypergraph-grammar-engine.js';
 
-import { AgenticPrimitive } from './agentic-grammar/types';
+import { AgenticPrimitive } from './agentic-grammar/types.js';
 
 /**
  * Example cognitive agent that uses the hypergraph grammar engine
