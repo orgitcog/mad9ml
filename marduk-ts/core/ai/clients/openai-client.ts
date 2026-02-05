@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
 import { AiRequest, AiResponse, AiAssistant } from '../types/ai-types.js';
 import { aiConfig } from '../config/ai-config.js';
 import { validateAiRequest, enrichAiRequest } from '../utils/ai-utils.js';
@@ -6,16 +6,15 @@ import { env } from '../../../config/env.js';
 
 export class OpenAIClient implements AiAssistant {
   private static instance: OpenAIClient;
-  private openai: OpenAIApi;
+  private openai: OpenAI;
   private retryCount = 3;
   private retryDelay = 1000;
 
   private constructor() {
-    const configuration = new Configuration({
+    this.openai = new OpenAI({
       apiKey: env.openai.apiKey,
       organization: env.openai.organization
     });
-    this.openai = new OpenAIApi(configuration);
   }
 
   static getInstance(): OpenAIClient {
@@ -38,7 +37,7 @@ export class OpenAIClient implements AiAssistant {
 
   private async callOpenAI(request: AiRequest): Promise<AiResponse> {
     try {
-      const completion = await this.openai.createChatCompletion({
+      const completion = await this.openai.chat.completions.create({
         model: aiConfig.models.default,
         messages: [
           { role: 'system', content: request.systemPrompt || aiConfig.systemPrompts.default },
@@ -53,13 +52,13 @@ export class OpenAIClient implements AiAssistant {
       });
 
       return {
-        content: completion.data.choices[0].message?.content || '',
-        usage: completion.data.usage || { 
+        content: completion.choices[0].message?.content || '',
+        usage: completion.usage || { 
           prompt_tokens: 0, 
           completion_tokens: 0, 
           total_tokens: 0 
         },
-        model: completion.data.model,
+        model: completion.model,
         timestamp: new Date().toISOString()
       };
     } catch (error) {

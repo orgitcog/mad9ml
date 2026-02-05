@@ -1,16 +1,15 @@
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
 import { AiResponse, AiRequest } from './types/ai-types.js';
 
 export class OpenAIClient {
   private static instance: OpenAIClient;
-  private openai: OpenAIApi;
+  private openai: OpenAI;
   private model = 'gpt-4-1106-preview';
 
   private constructor() {
-    const configuration = new Configuration({
+    this.openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY
     });
-    this.openai = new OpenAIApi(configuration);
   }
 
   static getInstance(): OpenAIClient {
@@ -22,7 +21,7 @@ export class OpenAIClient {
 
   async generateResponse(request: AiRequest): Promise<AiResponse> {
     try {
-      const completion = await this.openai.createChatCompletion({
+      const completion = await this.openai.chat.completions.create({
         model: this.model,
         messages: [
           { role: 'system', content: request.systemPrompt || this.getDefaultSystemPrompt() },
@@ -37,9 +36,9 @@ export class OpenAIClient {
       });
 
       return {
-        content: completion.data.choices[0].message?.content || '',
-        usage: completion.data.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
-        model: completion.data.model,
+        content: completion.choices[0].message?.content || '',
+        usage: completion.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
+        model: completion.model,
         timestamp: new Date().toISOString()
       };
     } catch (error) {

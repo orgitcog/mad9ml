@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import { env } from '../../../config/env.js';
-import LRUCache from 'lru-cache';
+import { LRUCache } from 'lru-cache';
 
 /**
  * Utility class for managing text embeddings and vector similarity
