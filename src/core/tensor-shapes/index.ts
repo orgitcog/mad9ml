@@ -45,10 +45,7 @@ export {
 // Import for use within the class
 import { cognitiveKernelRegistry, CognitiveKernelDefinition, TensorShapeReport } from './cognitive-kernel-registry.js';
 import { tensorShapeAutoDiscovery, TensorShapeEvolution } from './auto-discovery.js';
-import { messageTensorConverter as converter, MessageTensorSchema } from './schema-mapping.js';
-
-// Alias for internal use
-const messageTensorConverter = converter;
+import { messageTensorConverter, MessageTensorSchema } from './schema-mapping.js';
 
 /**
  * Unified tensor shape management interface

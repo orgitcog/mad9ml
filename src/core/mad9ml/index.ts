@@ -4,6 +4,7 @@
 
 // Core system
 export { Mad9mlSystem } from './mad9ml-core.js';
+// Import for internal use
 import { Mad9mlSystem } from './mad9ml-core.js';
 
 // Types
