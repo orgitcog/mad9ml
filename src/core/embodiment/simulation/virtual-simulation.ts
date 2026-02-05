@@ -7,7 +7,7 @@ import {
   SimulationInterface,
   SensorInterface,
   MotorInterface 
-} from '../interfaces/embodiment-interface';
+} from '../interfaces/embodiment-interface.js';
 import { 
   SensorData,
   MotorCommand,
@@ -16,9 +16,9 @@ import {
   DataQuality,
   Transform3D,
   ImageData 
-} from '../types/sensorimotor-types';
-import { BaseSensor } from '../sensors/base-sensor';
-import { BaseMotor } from '../motors/base-motor';
+} from '../types/sensorimotor-types.js';
+import { BaseSensor } from '../sensors/base-sensor.js';
+import { BaseMotor } from '../motors/base-motor.js';
 
 export class VirtualSimulation extends EventEmitter implements SimulationInterface {
   private isRunning: boolean = false;

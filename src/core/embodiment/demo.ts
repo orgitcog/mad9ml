@@ -11,7 +11,7 @@ import {
   EmbodimentConfig,
   SensorType,
   MotorType 
-} from './index';
+} from './index.js';
 
 async function demonstrateEmbodimentSystem() {
   console.log('🤖 Starting Sensorimotor Data Integration Demonstration...\n');

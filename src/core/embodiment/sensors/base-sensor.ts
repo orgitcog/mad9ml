@@ -6,13 +6,13 @@ import { EventEmitter } from 'events';
 import { 
   SensorInterface, 
   EmbodimentComponent 
-} from '../interfaces/embodiment-interface';
+} from '../interfaces/embodiment-interface.js';
 import { 
   SensorData, 
   SensorType, 
   DataQuality,
   CalibrationData 
-} from '../types/sensorimotor-types';
+} from '../types/sensorimotor-types.js';
 
 export abstract class BaseSensor extends EventEmitter implements SensorInterface {
   public readonly id: string;
