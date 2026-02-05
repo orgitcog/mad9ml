@@ -39,7 +39,7 @@ const QueryType = new GraphQLObjectType({
 const resolvers = {
   Query: {
     __schema: () => schema,
-    __type: (_, { name }) => schema.getType(name)
+    __type: (_: any, { name }: { name: string }) => schema.getType(name)
   }
 };
 

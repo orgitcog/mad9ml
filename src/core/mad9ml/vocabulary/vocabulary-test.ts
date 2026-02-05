@@ -183,8 +183,8 @@ async function runTests(): Promise<void> {
         console.log(`✅ ${name} - PASSED\n`);
         passed++;
       } catch (error) {
-        console.error(`❌ ${name} - FAILED:`, error.message);
-        console.error(error.stack);
+        console.error(`❌ ${name} - FAILED:`, (error as Error).message);
+        console.error((error as Error).stack);
         console.log('');
         failed++;
       }

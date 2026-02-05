@@ -19,11 +19,12 @@ import {
   DiscoveryError,
   DiscoveryStatistics,
   ValidationResult,
+  ValidationIssue,
   UsageStatistics,
   PerformanceMetrics,
-  TensorShape,
   GgmlDataType
 } from './vocabulary-types.js';
+import type { TensorShape } from '../types.js';
 
 /**
  * Scanner configuration
@@ -475,10 +476,10 @@ export class GgmlVocabularyScanner {
     partial: Partial<VocabularyItem>,
     content: string
   ): Promise<ValidationResult> {
-    const issues = [];
+    const issues: ValidationIssue[] = [];
     
     // Check for basic implementation
-    const isImplemented = partial.name && content.includes(partial.name);
+    const isImplemented = !!(partial.name && content.includes(partial.name));
     const isStub = !isImplemented || /TODO|FIXME|STUB/i.test(content);
     
     // Check for tests
