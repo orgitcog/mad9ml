@@ -456,7 +456,7 @@ class ErrorRecoveryWorkflow implements CognitiveWorkflow {
         }
       } catch (error) {
         affectedKernels.push(name);
-        errorImpacts.set(name, { severity: 1.0, error: error.message });
+        errorImpacts.set(name, { severity: 1.0, error: (error as Error).message });
       }
     }
 
@@ -592,7 +592,7 @@ class ErrorRecoveryWorkflow implements CognitiveWorkflow {
           recoveredKernels++;
         }
       } catch (error) {
-        recoveryResults.set(step.kernel, { success: false, error: error.message });
+        recoveryResults.set(step.kernel, { success: false, error: (error as Error).message });
       }
     }
 

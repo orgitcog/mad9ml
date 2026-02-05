@@ -311,7 +311,7 @@ async function runComprehensiveDemo(): Promise<void> {
         console.log(`   ❌ Failed to register: ${partial.name}`);
       }
     } catch (error) {
-      console.log(`   ❌ Error registering ${partial.name}: ${error.message}`);
+      console.log(`   ❌ Error registering ${partial.name}: ${(error as Error).message}`);
     }
   }
   

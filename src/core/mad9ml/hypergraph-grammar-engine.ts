@@ -473,9 +473,9 @@ export class HypergraphGrammarEngine {
 
     // Calculate confidence based on activation strength and query relevance
     const totalActivation = Array.from(activations.values())
-      .reduce((sum, activation) => sum + activation, 0);
+      .reduce((sum, activation) => (sum as number) + (activation as number), 0);
     
-    const confidence = Math.min(totalActivation / candidateNodes.length, 1.0);
+    const confidence = Math.min((totalActivation as number) / candidateNodes.length, 1.0);
 
     // Recursive call for deeper pattern exploration
     if (confidence > 0.2 && currentDepth < maxDepth - 1) {
