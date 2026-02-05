@@ -125,14 +125,16 @@ async function runMadScientistDemo() {
       
       console.log('\n   Subsystem Performance:');
       Object.entries(results.reflection.performanceAssessment.bySubsystem).forEach(([system, perf]) => {
-        const emoji = (perf as number) > 0.8 ? '🟢' : (perf as number) > 0.6 ? '🟡' : '🔴';
-        console.log(`     ${emoji} ${system}: ${((perf as number) * 100).toFixed(1)}%`);
+        const perfValue = perf as number;
+        const emoji = perfValue > 0.8 ? '🟢' : perfValue > 0.6 ? '🟡' : '🔴';
+        console.log(`     ${emoji} ${system}: ${(perfValue * 100).toFixed(1)}%`);
       });
       
       console.log('\n   Performance Trends:');
       Object.entries(results.reflection.performanceAssessment.trends).forEach(([system, trend]) => {
-        const emoji = (trend as number) > 0.01 ? '📈' : (trend as number) < -0.01 ? '📉' : '➡️';
-        console.log(`     ${emoji} ${system}: ${(trend as number) > 0 ? '+' : ''}${((trend as number) * 100).toFixed(2)}%`);
+        const trendValue = trend as number;
+        const emoji = trendValue > 0.01 ? '📈' : trendValue < -0.01 ? '📉' : '➡️';
+        console.log(`     ${emoji} ${system}: ${trendValue > 0 ? '+' : ''}${(trendValue * 100).toFixed(2)}%`);
       });
       
       // Display evolution stats
