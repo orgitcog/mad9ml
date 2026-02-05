@@ -173,7 +173,7 @@ export function createDevelopmentRegistry(
  * Create a kernel integration hook that logs vocabulary usage
  */
 export function createLoggingKernelHook(): KernelHook {
-  return async (item) => {
+  return async (item: any) => {
     console.log(`🔗 Kernel integration for vocabulary item: ${item.name} (${item.type})`);
     
     // Update usage statistics
@@ -190,7 +190,7 @@ export function createLoggingKernelHook(): KernelHook {
  * Create a kernel integration hook that validates tensor compatibility
  */
 export function createTensorValidationHook(): KernelHook {
-  return async (item) => {
+  return async (item: any) => {
     // Validate tensor metadata
     if (!item.tensorMetadata || !item.tensorMetadata.shape) {
       console.warn(`⚠️ Vocabulary item ${item.name} lacks tensor metadata`);
@@ -198,13 +198,13 @@ export function createTensorValidationHook(): KernelHook {
     }
     
     // Check for invalid dimensions
-    if (item.tensorMetadata.shape.some(dim => dim <= 0)) {
+    if (item.tensorMetadata.shape.some((dim: number) => dim <= 0)) {
       console.error(`❌ Invalid tensor shape for ${item.name}: ${item.tensorMetadata.shape}`);
       return;
     }
     
     // Calculate memory requirements
-    const elements = item.tensorMetadata.shape.reduce((a, b) => a * b, 1);
+    const elements = item.tensorMetadata.shape.reduce((a: number, b: number) => a * b, 1);
     const bytesPerElement = item.tensorMetadata.dataType === 'f32' ? 4 : 
                            item.tensorMetadata.dataType === 'f16' ? 2 : 4;
     const memoryMB = (elements * bytesPerElement) / (1024 * 1024);
@@ -219,12 +219,12 @@ export function createTensorValidationHook(): KernelHook {
  * Create a performance monitoring hook
  */
 export function createPerformanceMonitoringHook(): KernelHook {
-  return async (item) => {
+  return async (item: any) => {
     const startTime = Date.now();
     
     // Simulate performance analysis
     const complexity = item.performanceMetrics.computationalComplexity;
-    const tensorSize = item.tensorMetadata.shape.reduce((a, b) => a * b, 1);
+    const tensorSize = item.tensorMetadata.shape.reduce((a: number, b: number) => a * b, 1);
     
     // Estimate execution time based on complexity and tensor size
     let estimatedTime = 1; // Base 1ms

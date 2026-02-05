@@ -524,7 +524,7 @@ export class HypergraphGrammarEngine {
     
     for (let i = 1; i < nodeIds.length; i++) {
       const node = this.hypergraph.nodes.get(nodeIds[i]);
-      if (node && node.state.shape.every((dim, idx) => dim === combined.shape[idx])) {
+      if (node && node.state.shape.every((dim: number, idx: number) => dim === combined.shape[idx])) {
         combined = addTensors(combined, node.state);
       }
     }
@@ -579,7 +579,7 @@ export class HypergraphGrammarEngine {
    */
   private simulateAttentionOperation(input: Tensor, transform: PatternTransformation): Tensor {
     // Simplified attention: apply learned weights to focus on important features
-    const outputSize = transform.outputShape.reduce((acc, dim) => acc * dim, 1);
+    const outputSize = transform.outputShape.reduce((acc: number, dim: number) => acc * dim, 1);
     const weights = transform.parameters;
     
     // Create attention-weighted output
@@ -597,7 +597,7 @@ export class HypergraphGrammarEngine {
    */
   private simulateCompositionOperation(input: Tensor, transform: PatternTransformation): Tensor {
     // Simplified composition: linear combination of features
-    const outputSize = transform.outputShape.reduce((acc, dim) => acc * dim, 1);
+    const outputSize = transform.outputShape.reduce((acc: number, dim: number) => acc * dim, 1);
     const output = new Float32Array(outputSize);
     
     for (let i = 0; i < outputSize; i++) {
@@ -614,7 +614,7 @@ export class HypergraphGrammarEngine {
    */
   private simulateDecompositionOperation(input: Tensor, transform: PatternTransformation): Tensor {
     // Simplified decomposition: distribute features across hierarchical structure
-    const outputSize = transform.outputShape.reduce((acc, dim) => acc * dim, 1);
+    const outputSize = transform.outputShape.reduce((acc: number, dim: number) => acc * dim, 1);
     const output = new Float32Array(outputSize);
     
     // Distribute input features across output dimensions

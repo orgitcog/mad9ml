@@ -753,14 +753,3 @@ export async function runCompleteIntegrationDemo(): Promise<void> {
     console.error(`❌ Integration demo failed: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
-
-// Export all demo functions for individual testing
-export {
-  demonstrateBasicConversion,
-  demonstratePLNReasoning,
-  demonstrateBidirectionalConversion,
-  demonstrateReasoningTraceability,
-  demonstrateECANIntegration,
-  demonstrateAgenticGrammarReasoning,
-  runCompleteIntegrationDemo
-};

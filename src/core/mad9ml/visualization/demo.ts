@@ -108,27 +108,27 @@ export class VisualizationDemo {
     if (!this.dashboard) return;
 
     // Listen for view changes
-    this.dashboard.on('viewChange', (data) => {
+    this.dashboard.on('viewChange', (data: any) => {
       console.log(`🔄 Switched to ${data.viewType} view`);
     });
 
     // Listen for focus events
-    this.dashboard.on('focus', (data) => {
+    this.dashboard.on('focus', (data: any) => {
       console.log(`🎯 Focused on element: ${data.nodeId}`);
     });
 
     // Listen for time travel events
-    this.dashboard.on('timeChange', (data) => {
+    this.dashboard.on('timeChange', (data: any) => {
       console.log(`⏰ Time traveled to: ${new Date(data.timestamp).toLocaleTimeString()}`);
     });
 
     // Listen for state updates
-    this.dashboard.on('stateUpdate', (data) => {
+    this.dashboard.on('stateUpdate', (data: any) => {
       console.log(`📊 System state updated: ${data.id}`);
     });
 
     // Listen for errors
-    this.dashboard.on('error', (error) => {
+    this.dashboard.on('error', (error: any) => {
       console.error('❌ Visualization error:', error);
     });
   }

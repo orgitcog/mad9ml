@@ -2,7 +2,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "ES2022.Object", "ES2022.Array"],
+    "lib": ["ES2022", "ES2022.Object", "ES2022.Array", "dom"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "esModuleInterop": true,

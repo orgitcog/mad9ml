@@ -148,7 +148,7 @@ async function runMadScientistDemo() {
       console.log(`   Entropy: ${results.attentionStats.entropy.toFixed(3)}`);
       console.log(`   Concentration: ${(results.attentionStats.concentration * 100).toFixed(1)}%`);
       console.log(`   Top Focus Areas:`);
-      results.attentionStats.topTasks.slice(0, 3).forEach((task, i) => {
+      results.attentionStats.topTasks.slice(0, 3).forEach((task: any, i: number) => {
         console.log(`     ${i + 1}. Task ${task.index}: ${(task.allocation * 100).toFixed(1)}%`);
       });
       
@@ -162,7 +162,7 @@ async function runMadScientistDemo() {
       // Show reasoning chain
       if (results.reflection.reasoning.length > 0) {
         console.log('\n🧠 COGNITIVE REASONING CHAIN:');
-        results.reflection.reasoning.slice(0, 3).forEach((reason, i) => {
+        results.reflection.reasoning.slice(0, 3).forEach((reason: any, i: number) => {
           console.log(`   ${i + 1}. ${reason}`);
         });
       }

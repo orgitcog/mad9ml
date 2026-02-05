@@ -8,7 +8,7 @@
 import { 
   DistributedAgenticGrammarSystem, 
   createDefaultAgenticGrammarConfig 
-} from './agentic-grammar/index.js';
+} from './index.js';
 
 /**
  * Demonstrates the distributed agentic grammar system

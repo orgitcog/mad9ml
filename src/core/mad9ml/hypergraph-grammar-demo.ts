@@ -329,7 +329,7 @@ async function runHypergraphGrammarDemo(): Promise<void> {
   console.log(`      📊 Analysis cycles completed: ${finalStats.analysisHistory.length}`);
   console.log(`      🎯 Current patterns: ${finalStats.patterns}`);
   console.log(`      ⚙️ Active transformations: ${finalStats.transformations}`);
-  console.log(`      🧮 Evolution parameters: [${finalStats.evolutionState.slice(0, 5).map(x => x.toFixed(3)).join(', ')}...]`);
+  console.log(`      🧮 Evolution parameters: [${finalStats.evolutionState.slice(0, 5).map((x: number) => x.toFixed(3)).join(', ')}...]`);
   console.log('');
 
   // 7. Generate and display hypergraph visualization
@@ -345,7 +345,7 @@ async function runHypergraphGrammarDemo(): Promise<void> {
   const statsSection = lines.slice(0, 15);
   const patternsSection = lines.slice(15, 35);
   
-  console.log(statsSection.map(line => `   ${line}`).join('\n'));
+  console.log(statsSection.map((line: string) => `   ${line}`).join('\n'));
   console.log(`   ... [Pattern details truncated for demo] ...`);
   console.log('   ' + '='.repeat(50));
   console.log('');
@@ -372,7 +372,7 @@ async function runHypergraphGrammarDemo(): Promise<void> {
   console.log(`   ⏱️ Parallel processing completed in ${endTime - startTime}ms`);
   console.log(`   🎯 Total pattern matches found: ${parallelResults.flat().length}`);
   
-  parallelResults.forEach((results, index) => {
+  parallelResults.forEach((results: any, index: number) => {
     if (results.length > 0) {
       console.log(`      🔍 "${parallelQueries[index]}": ${results.length} matches, best confidence: ${(results[0].confidence * 100).toFixed(1)}%`);
     }
