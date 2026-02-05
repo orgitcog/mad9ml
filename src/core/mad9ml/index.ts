@@ -4,6 +4,7 @@
 
 // Core system
 export { Mad9mlSystem } from './mad9ml-core.js';
+import { Mad9mlSystem } from './mad9ml-core.js';
 
 // Types
 export type {
@@ -128,6 +129,6 @@ export {
   type PatternTransformation,
   type PatternMatchResult,
   type AnalysisMetrics
-} from './hypergraph-grammar-engine';
+} from './hypergraph-grammar-engine.js';
 
-export { runHypergraphGrammarDemo } from './hypergraph-grammar-demo';
+export { runHypergraphGrammarDemo } from './hypergraph-grammar-demo.js';

@@ -19,6 +19,9 @@ export {
   type ExportFormat
 } from './ggml-vocabulary-registry.js';
 
+// Import for use in the code
+import { GgmlVocabularyRegistry, KernelHook } from './ggml-vocabulary-registry.js';
+
 // Auto-discovery scanner
 export { 
   GgmlVocabularyScanner,
