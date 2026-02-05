@@ -630,7 +630,7 @@ export class KernelStateConverter {
   private createTensorFromAtom(atom: Atom): Tensor {
     // Create a simple tensor from atom data
     const shape = atom.metadata.tensorShape || [1, 1, 1];
-    const size = shape.reduce((a, b) => a * b, 1);
+    const size = shape.reduce((a: number, b: number) => a * b, 1);
     const data = new Float32Array(size);
     
     // Fill with atom truth and attention values
@@ -648,7 +648,7 @@ export class KernelStateConverter {
   }
 
   private createTensorFromAtoms(atoms: Atom[], shape: number[]): Tensor {
-    const size = shape.reduce((a, b) => a * b, 1);
+    const size = shape.reduce((a: number, b: number) => a * b, 1);
     const data = new Float32Array(size);
     
     // Fill tensor with atom data

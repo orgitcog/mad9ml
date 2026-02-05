@@ -287,7 +287,7 @@ class ScenarioVisualizer {
     const keywords1 = behavior1.type.split('-');
     const keywords2 = behavior2.type.split('-');
     
-    return keywords1.some(keyword => keywords2.includes(keyword));
+    return keywords1.some((keyword: string) => keywords2.includes(keyword));
   }
 
   private trackBehaviorEvolution(behavior: any): any {
@@ -417,14 +417,14 @@ class CoverageReporter {
     return {
       testCounts: {
         totalTests: workflowResults.length,
-        successfulTests: workflowResults.filter(r => r.success).length,
-        failedTests: workflowResults.filter(r => !r.success).length
+        successfulTests: workflowResults.filter((r: any) => r.success).length,
+        failedTests: workflowResults.filter((r: any) => !r.success).length
       },
       synergyMetrics: this.analyzeSynergyMetrics(workflowResults),
       performanceMetrics: this.analyzePerformanceMetrics(workflowResults),
       emergentBehaviorStats: this.analyzeEmergentBehaviors(workflowResults),
       coverageGaps: {
-        criticalGaps: coverageAnalysis.recommendations.filter(r => r.priority === 'high').length,
+        criticalGaps: coverageAnalysis.recommendations.filter((r: any) => r.priority === 'high').length,
         totalGaps: coverageAnalysis.recommendations.length,
         gapsByType: this.categorizeGaps(coverageAnalysis.recommendations)
       }

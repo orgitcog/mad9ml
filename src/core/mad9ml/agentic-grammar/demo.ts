@@ -69,7 +69,7 @@ export async function demonstrateDistributedAgenticGrammar(): Promise<void> {
         
         console.log(`   ✅ Processing complete in ${result.processing.totalProcessingTime}ms`);
         console.log(`   🎯 Kernel pipeline: ${result.routing.length} kernels`);
-        console.log(`   🧠 Attention levels: [${result.attention.map(a => a.toFixed(2)).join(', ')}]`);
+        console.log(`   🧠 Attention levels: [${result.attention.map((a: number) => a.toFixed(2)).join(', ')}]`);
         console.log(`   📊 Result tensor shape: [${result.result.shape.join('×')}]`);
         
         // Brief pause for dramatic effect

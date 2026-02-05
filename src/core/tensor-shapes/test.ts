@@ -67,7 +67,7 @@ function runBasicTests(): boolean {
       }
       
       // Check if all dimensions are positive
-      if (kernel.tensorShape.some(dim => dim <= 0)) {
+      if (kernel.tensorShape.some((dim: number) => dim <= 0)) {
         console.log(`❌ ${kernel.name}: Non-positive dimensions in tensor shape`);
         validShapes = false;
         break;
@@ -184,7 +184,7 @@ function runBasicTests(): boolean {
     let validFactorizations = true;
     
     for (const kernel of kernels) {
-      const product = kernel.primeFactorization.reduce((prod, factor) => prod * factor, 1);
+      const product = kernel.primeFactorization.reduce((prod: number, factor: number) => prod * factor, 1);
       const firstDimension = kernel.tensorShape[0];
       
       if (product !== firstDimension) {
@@ -273,7 +273,7 @@ function analyzeMemoryUsage(): void {
 
   const kernels = TensorShapeManager.getAllKernels();
   const memoryAnalysis = kernels.map(kernel => {
-    const elements = kernel.tensorShape.reduce((prod, dim) => prod * dim, 1);
+    const elements = kernel.tensorShape.reduce((prod: number, dim: number) => prod * dim, 1);
     const memoryMB = (elements * 4) / (1024 * 1024); // f32 = 4 bytes
     return { name: kernel.name, category: kernel.category, elements, memoryMB };
   }).sort((a, b) => b.memoryMB - a.memoryMB);
