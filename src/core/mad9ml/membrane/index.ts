@@ -90,7 +90,7 @@ export {
 
 // Import the needed types for the factories
 import { Membrane } from './membrane-abstraction.js';
-import { PortChannel, PortMessage, RoutingContext } from './port-channel.js';
+import { PortChannel, PortMessage } from './port-channel.js';
 import { PSystem } from './p-system.js';
 import { MessageRouter } from './message-router.js';
 import { MembraneRegistry, MembraneRegistryFactory } from './membrane-registry.js';

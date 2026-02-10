@@ -4,14 +4,14 @@
  */
 
 import { EventEmitter } from 'events';
-import { PSytemIntegrator } from '../interfaces/embodiment-interface';
+import { PSytemIntegrator } from '../interfaces/embodiment-interface.js';
 import { 
   SensorData, 
   MotorCommand, 
   SensorimotorMemoryEntry,
   SensorType,
   MotorType 
-} from '../types/sensorimotor-types';
+} from '../types/sensorimotor-types.js';
 
 export class PSytemIntegrationEngine extends EventEmitter implements PSytemIntegrator {
   private memoryBuffer: SensorimotorMemoryEntry[] = [];

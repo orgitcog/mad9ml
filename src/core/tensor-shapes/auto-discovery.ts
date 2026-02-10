@@ -283,8 +283,9 @@ ${this.generateEmergentProperties(kernels)}
       return acc;
     }, {} as Record<string, number>);
 
-    const balanceVariance = Object.values(categoryBalance).reduce((sum, count, _, arr) => {
-      const avg = arr.reduce((s, c) => s + c, 0) / arr.length;
+    const balanceVariance = Object.values(categoryBalance).reduce((sum: number, count: number) => {
+      const values = Object.values(categoryBalance);
+      const avg = values.reduce((s: number, c: number) => s + c, 0) / values.length;
       return sum + Math.pow(count - avg, 2);
     }, 0) / Object.values(categoryBalance).length;
 

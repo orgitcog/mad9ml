@@ -4,14 +4,14 @@
  */
 
 import { EventEmitter } from 'events';
-import { MetaCognitiveMonitor } from '../interfaces/embodiment-interface';
+import { MetaCognitiveMonitor } from '../interfaces/embodiment-interface.js';
 import { 
   SensorimotorDiagnostics,
   SensorHealth,
   MotorHealth,
   IntegrationHealth,
   IntegrationError 
-} from '../types/sensorimotor-types';
+} from '../types/sensorimotor-types.js';
 
 export class SensorimotorMetaMonitor extends EventEmitter implements MetaCognitiveMonitor {
   private isMonitoring: boolean = false;

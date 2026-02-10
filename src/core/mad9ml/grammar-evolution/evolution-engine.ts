@@ -719,11 +719,21 @@ export class GrammarEvolutionEngine {
 
   private cosineSimilarity(tensorA: any, tensorB: any): number {
     // Simplified cosine similarity
-    const dotProd = dotProduct(tensorA, tensorB);
-    const normA = Math.sqrt(dotProduct(tensorA, tensorA));
-    const normB = Math.sqrt(dotProduct(tensorB, tensorB));
+    const dotProd = (a: any, b: any): number => {
+      let result = 0;
+      if (Array.isArray(a) && Array.isArray(b)) {
+        for (let i = 0; i < Math.min(a.length, b.length); i++) {
+          result += (a[i] as number) * (b[i] as number);
+        }
+      }
+      return result;
+    };
     
-    return normA > 0 && normB > 0 ? dotProd / (normA * normB) : 0;
+    const dpAB = dotProd(tensorA, tensorB);
+    const normA = Math.sqrt(dotProd(tensorA, tensorA));
+    const normB = Math.sqrt(dotProd(tensorB, tensorB));
+    
+    return normA > 0 && normB > 0 ? dpAB / (normA * normB) : 0;
   }
 
   private performMetaOptimization(): void {

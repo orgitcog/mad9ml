@@ -5,8 +5,8 @@
  * without complex dependencies.
  */
 
-import { makeTensor, randomTensor, addTensors, scaleTensor, dotProduct } from './tensor/operations';
-import { CognitiveHypergraphImpl } from './hypergraph/cognitive-hypergraph';
+import { makeTensor, randomTensor, addTensors, scaleTensor, dotProduct } from './tensor/operations.js';
+import { CognitiveHypergraphImpl } from './hypergraph/cognitive-hypergraph.js';
 
 /**
  * Quick validation test for hypergraph grammar components

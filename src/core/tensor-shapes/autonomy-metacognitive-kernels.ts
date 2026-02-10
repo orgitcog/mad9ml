@@ -536,5 +536,3 @@ export class AutonomyMetaCognitiveKernels {
     };
   }
 }
-
-export { AutonomyMetaCognitiveKernels };

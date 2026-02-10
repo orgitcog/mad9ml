@@ -32,10 +32,10 @@ export async function runTensorShapeDemo(): Promise<void> {
   console.log('====================');
   Object.entries(report.categories).forEach(([category, kernels]) => {
     console.log(`${category}: ${kernels.length} kernels`);
-    kernels.forEach(kernelId => {
+    kernels.forEach((kernelId: string) => {
       const kernel = TensorShapeManager.getKernel(kernelId);
       if (kernel) {
-        const elements = kernel.tensorShape.reduce((prod, dim) => prod * dim, 1);
+        const elements = kernel.tensorShape.reduce((prod: number, dim: number) => prod * dim, 1);
         const memoryMB = (elements * 4) / (1024 * 1024);
         console.log(`  - ${kernel.name}: [${kernel.tensorShape.join(', ')}] (${memoryMB.toFixed(3)} MB)`);
       }
@@ -114,7 +114,7 @@ export async function runTensorShapeDemo(): Promise<void> {
   
   const kernels = TensorShapeManager.getAllKernels();
   const memoryAnalysis = kernels.map(kernel => {
-    const elements = kernel.tensorShape.reduce((prod, dim) => prod * dim, 1);
+    const elements = kernel.tensorShape.reduce((prod: number, dim: number) => prod * dim, 1);
     const memoryMB = (elements * 4) / (1024 * 1024);
     return { kernel: kernel.name, category: kernel.category, memoryMB, elements };
   }).sort((a, b) => b.memoryMB - a.memoryMB);
@@ -126,7 +126,7 @@ export async function runTensorShapeDemo(): Promise<void> {
   console.log();
 
   const memoryByCategory = kernels.reduce((acc, kernel) => {
-    const elements = kernel.tensorShape.reduce((prod, dim) => prod * dim, 1);
+    const elements = kernel.tensorShape.reduce((prod: number, dim: number) => prod * dim, 1);
     const memoryMB = (elements * 4) / (1024 * 1024);
     acc[kernel.category] = (acc[kernel.category] || 0) + memoryMB;
     return acc;
@@ -163,7 +163,7 @@ export async function runTensorShapeDemo(): Promise<void> {
   // Analyze prime factorizations
   const primeUsage = new Map<number, number>();
   kernels.forEach(kernel => {
-    kernel.primeFactorization.forEach(prime => {
+    kernel.primeFactorization.forEach((prime: number) => {
       primeUsage.set(prime, (primeUsage.get(prime) || 0) + 1);
     });
   });
@@ -212,14 +212,14 @@ export async function runTensorShapeDemo(): Promise<void> {
   console.log('===============================');
   
   const largeTensors = kernels.filter(k => {
-    const elements = k.tensorShape.reduce((prod, dim) => prod * dim, 1);
+    const elements = k.tensorShape.reduce((prod: number, dim: number) => prod * dim, 1);
     return elements > 1000000; // > 1M elements
   });
 
   if (largeTensors.length > 0) {
     console.log('Large tensors detected (consider optimization):');
     largeTensors.forEach(kernel => {
-      const elements = kernel.tensorShape.reduce((prod, dim) => prod * dim, 1);
+      const elements = kernel.tensorShape.reduce((prod: number, dim: number) => prod * dim, 1);
       console.log(`- ${kernel.name}: ${elements.toLocaleString()} elements`);
     });
   } else {
@@ -289,13 +289,13 @@ export function validateTensorShapeConsistency(): boolean {
   // Check for shape consistency
   kernels.forEach(kernel => {
     // Validate shape dimensions are positive
-    if (kernel.tensorShape.some(dim => dim <= 0)) {
+    if (kernel.tensorShape.some((dim: number) => dim <= 0)) {
       issues.push(`${kernel.name}: Invalid tensor shape dimensions`);
       valid = false;
     }
 
     // Validate interface tensor components match kernel tensor shape
-    kernel.interfaces.forEach(iface => {
+    kernel.interfaces.forEach((iface: any) => {
       const ifaceDims = iface.tensorComponent.dimensions;
       if (ifaceDims.length !== kernel.tensorShape.length) {
         issues.push(`${kernel.name}.${iface.name}: Interface dimensions don't match kernel shape length`);
@@ -311,7 +311,7 @@ export function validateTensorShapeConsistency(): boolean {
     }
 
     // Validate prime factorization
-    const product = kernel.primeFactorization.reduce((prod, factor) => prod * factor, 1);
+    const product = kernel.primeFactorization.reduce((prod: number, factor: number) => prod * factor, 1);
     const expectedProduct = kernel.tensorShape[0]; // First dimension should match factorization
     if (product !== expectedProduct) {
       issues.push(`${kernel.name}: Prime factorization doesn't match first tensor dimension`);

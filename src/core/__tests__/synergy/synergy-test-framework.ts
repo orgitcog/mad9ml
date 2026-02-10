@@ -356,6 +356,25 @@ interface WorkflowResult {
   resourceEfficiency: ResourceEfficiency;
   executionTime: number;
   errorRecovery?: any;
+  attentionPatterns: { 
+    focusCoherence: number; 
+    noveltyDetection: number;
+    adaptiveRefinement?: number;
+    convergenceStability?: number;
+    [key: string]: any;
+  };
+  memoryReorganization: { 
+    strength: number; 
+    consolidation: number;
+    depth?: number;
+    [key: string]: any;
+  };
+  learningAdaptations: { 
+    strength: number;
+    [key: string]: any;
+  };
+  reasoningAccuracy?: number;
+  [key: string]: any;
 }
 
 interface SynergyMetrics {

@@ -125,14 +125,16 @@ async function runMadScientistDemo() {
       
       console.log('\n   Subsystem Performance:');
       Object.entries(results.reflection.performanceAssessment.bySubsystem).forEach(([system, perf]) => {
-        const emoji = perf > 0.8 ? '🟢' : perf > 0.6 ? '🟡' : '🔴';
-        console.log(`     ${emoji} ${system}: ${(perf * 100).toFixed(1)}%`);
+        const perfValue = perf as number;
+        const emoji = perfValue > 0.8 ? '🟢' : perfValue > 0.6 ? '🟡' : '🔴';
+        console.log(`     ${emoji} ${system}: ${(perfValue * 100).toFixed(1)}%`);
       });
       
       console.log('\n   Performance Trends:');
       Object.entries(results.reflection.performanceAssessment.trends).forEach(([system, trend]) => {
-        const emoji = trend > 0.01 ? '📈' : trend < -0.01 ? '📉' : '➡️';
-        console.log(`     ${emoji} ${system}: ${trend > 0 ? '+' : ''}${(trend * 100).toFixed(2)}%`);
+        const trendValue = trend as number;
+        const emoji = trendValue > 0.01 ? '📈' : trendValue < -0.01 ? '📉' : '➡️';
+        console.log(`     ${emoji} ${system}: ${trendValue > 0 ? '+' : ''}${(trendValue * 100).toFixed(2)}%`);
       });
       
       // Display evolution stats
@@ -148,7 +150,7 @@ async function runMadScientistDemo() {
       console.log(`   Entropy: ${results.attentionStats.entropy.toFixed(3)}`);
       console.log(`   Concentration: ${(results.attentionStats.concentration * 100).toFixed(1)}%`);
       console.log(`   Top Focus Areas:`);
-      results.attentionStats.topTasks.slice(0, 3).forEach((task, i) => {
+      results.attentionStats.topTasks.slice(0, 3).forEach((task: any, i: number) => {
         console.log(`     ${i + 1}. Task ${task.index}: ${(task.allocation * 100).toFixed(1)}%`);
       });
       
@@ -162,7 +164,7 @@ async function runMadScientistDemo() {
       // Show reasoning chain
       if (results.reflection.reasoning.length > 0) {
         console.log('\n🧠 COGNITIVE REASONING CHAIN:');
-        results.reflection.reasoning.slice(0, 3).forEach((reason, i) => {
+        results.reflection.reasoning.slice(0, 3).forEach((reason: any, i: number) => {
           console.log(`   ${i + 1}. ${reason}`);
         });
       }

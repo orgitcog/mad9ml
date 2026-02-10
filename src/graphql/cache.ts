@@ -4,16 +4,16 @@ import path from 'path';
 
 const cache = new NodeCache({ stdTTL: 3600 }); // Cache TTL set to 1 hour
 
-export function getCachedIntrospectionResult(key) {
+export function getCachedIntrospectionResult(key: string): any {
   return cache.get(key);
 }
 
-export function setCachedIntrospectionResult(key, value) {
+export function setCachedIntrospectionResult(key: string, value: any): void {
   cache.set(key, value);
 }
 
-export function invalidateCacheOnSchemaChange(schemaFilePath) {
-  fs.watch(schemaFilePath, (eventType, filename) => {
+export function invalidateCacheOnSchemaChange(schemaFilePath: string): void {
+  fs.watch(schemaFilePath, (eventType: string, filename: string) => {
     if (eventType === 'change') {
       cache.flushAll();
     }

@@ -19,11 +19,12 @@ import {
   DiscoveryError,
   DiscoveryStatistics,
   ValidationResult,
+  ValidationIssue,
   UsageStatistics,
   PerformanceMetrics,
-  TensorShape,
   GgmlDataType
 } from './vocabulary-types.js';
+import type { TensorShape } from '../types.js';
 
 /**
  * Scanner configuration
@@ -106,7 +107,7 @@ export class GgmlVocabularyScanner {
     } catch (error) {
       const discoveryError: DiscoveryError = {
         type: 'access',
-        message: `Scan failed: ${error.message}`,
+        message: `Scan failed: ${(error as Error).message}`,
         location: {
           filePath: this.config.rootPath,
           lineNumber: 0,
@@ -152,7 +153,7 @@ export class GgmlVocabularyScanner {
     } catch (error) {
       const discoveryError: DiscoveryError = {
         type: 'access',
-        message: `Directory scan failed: ${error.message}`,
+        message: `Directory scan failed: ${(error as Error).message}`,
         location: {
           filePath: dirPath,
           lineNumber: 0,
@@ -231,7 +232,7 @@ export class GgmlVocabularyScanner {
     } catch (error) {
       const discoveryError: DiscoveryError = {
         type: 'parse',
-        message: `File parsing failed: ${error.message}`,
+        message: `File parsing failed: ${(error as Error).message}`,
         location: {
           filePath,
           lineNumber: 0,
@@ -261,7 +262,7 @@ export class GgmlVocabularyScanner {
           const item = await this.buildCompleteVocabularyItem(partialItem, content, filePath, match);
           items.push(item);
         } catch (error) {
-          console.warn(`⚠️ Failed to extract item from ${filePath}: ${error.message}`);
+          console.warn(`⚠️ Failed to extract item from ${filePath}: ${(error as Error).message}`);
         }
       }
     }
@@ -475,10 +476,10 @@ export class GgmlVocabularyScanner {
     partial: Partial<VocabularyItem>,
     content: string
   ): Promise<ValidationResult> {
-    const issues = [];
+    const issues: ValidationIssue[] = [];
     
     // Check for basic implementation
-    const isImplemented = partial.name && content.includes(partial.name);
+    const isImplemented = !!(partial.name && content.includes(partial.name));
     const isStub = !isImplemented || /TODO|FIXME|STUB/i.test(content);
     
     // Check for tests

@@ -183,8 +183,8 @@ async function runTests(): Promise<void> {
         console.log(`✅ ${name} - PASSED\n`);
         passed++;
       } catch (error) {
-        console.error(`❌ ${name} - FAILED:`, error.message);
-        console.error(error.stack);
+        console.error(`❌ ${name} - FAILED:`, (error as Error).message);
+        console.error((error as Error).stack);
         console.log('');
         failed++;
       }
@@ -336,8 +336,8 @@ async function runTests(): Promise<void> {
       throw new Error(`Expected at least 2 inconsistency reports, found ${reports.length}`);
     }
     
-    const coreStubReport = reports.find(r => r.itemId === 'test:coreStub');
-    const badTensorReport = reports.find(r => r.itemId === 'test:badTensor');
+    const coreStubReport = reports.find((r: any) => r.itemId === 'test:coreStub');
+    const badTensorReport = reports.find((r: any) => r.itemId === 'test:badTensor');
     
     if (!coreStubReport) {
       throw new Error('Missing inconsistency report for core stub');
@@ -401,7 +401,7 @@ async function runTests(): Promise<void> {
     const registry = createVocabularyRegistry('test-registry-9', 'Test Registry 9');
     
     let eventReceived = false;
-    registry.addEventListener('item_registered', (event) => {
+    registry.addEventListener('item_registered', (event: any) => {
       eventReceived = true;
       if (event.itemId !== 'test:eventTest') {
         throw new Error('Event received wrong item ID');
@@ -569,10 +569,10 @@ async function runDemo(): Promise<void> {
   // Demonstrate search
   console.log('🔍 Searching vocabulary...');
   const tensorItems = registry.findItems({ category: 'tensor-op' });
-  console.log(`   Tensor operators: ${tensorItems.map(i => i.name).join(', ')}`);
+  console.log(`   Tensor operators: ${tensorItems.map((i: any) => i.name).join(', ')}`);
   
   const attentionItems = registry.findItems({ tags: ['attention'] });
-  console.log(`   Attention items: ${attentionItems.map(i => i.name).join(', ')}`);
+  console.log(`   Attention items: ${attentionItems.map((i: any) => i.name).join(', ')}`);
   console.log();
   
   // Export catalog

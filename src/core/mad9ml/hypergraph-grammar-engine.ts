@@ -6,23 +6,23 @@
  * parallel tensor operations.
  */
 
-import { CognitiveHypergraphImpl } from './hypergraph/cognitive-hypergraph';
-import { AgenticGrammarExtractor } from './agentic-grammar/extractor';
-import { makeTensor, randomTensor, addTensors, scaleTensor, dotProduct } from './tensor/operations';
+import { CognitiveHypergraphImpl } from './hypergraph/cognitive-hypergraph.js';
+import { AgenticGrammarExtractor } from './agentic-grammar/extractor.js';
+import { makeTensor, randomTensor, addTensors, scaleTensor, dotProduct } from './tensor/operations.js';
 import { 
   AgenticPrimitive, 
   AgenticPrimitiveType, 
   GrammarToken,
   GgmlKernel,
   AgenticGrammarConfig
-} from './agentic-grammar/types';
+} from './agentic-grammar/types.js';
 import { 
   CognitiveNode, 
   CognitiveEdge, 
   Tensor, 
   TensorShape,
   CognitiveHypergraph 
-} from './types';
+} from './types.js';
 
 /**
  * Hypergraph pattern for encoding grammar rules
@@ -473,9 +473,9 @@ export class HypergraphGrammarEngine {
 
     // Calculate confidence based on activation strength and query relevance
     const totalActivation = Array.from(activations.values())
-      .reduce((sum, activation) => sum + activation, 0);
+      .reduce((sum, activation) => (sum as number) + (activation as number), 0);
     
-    const confidence = Math.min(totalActivation / candidateNodes.length, 1.0);
+    const confidence = Math.min((totalActivation as number) / candidateNodes.length, 1.0);
 
     // Recursive call for deeper pattern exploration
     if (confidence > 0.2 && currentDepth < maxDepth - 1) {
@@ -524,7 +524,7 @@ export class HypergraphGrammarEngine {
     
     for (let i = 1; i < nodeIds.length; i++) {
       const node = this.hypergraph.nodes.get(nodeIds[i]);
-      if (node && node.state.shape.every((dim, idx) => dim === combined.shape[idx])) {
+      if (node && node.state.shape.every((dim: number, idx: number) => dim === combined.shape[idx])) {
         combined = addTensors(combined, node.state);
       }
     }
@@ -579,7 +579,7 @@ export class HypergraphGrammarEngine {
    */
   private simulateAttentionOperation(input: Tensor, transform: PatternTransformation): Tensor {
     // Simplified attention: apply learned weights to focus on important features
-    const outputSize = transform.outputShape.reduce((acc, dim) => acc * dim, 1);
+    const outputSize = transform.outputShape.reduce((acc: number, dim: number) => acc * dim, 1);
     const weights = transform.parameters;
     
     // Create attention-weighted output
@@ -597,7 +597,7 @@ export class HypergraphGrammarEngine {
    */
   private simulateCompositionOperation(input: Tensor, transform: PatternTransformation): Tensor {
     // Simplified composition: linear combination of features
-    const outputSize = transform.outputShape.reduce((acc, dim) => acc * dim, 1);
+    const outputSize = transform.outputShape.reduce((acc: number, dim: number) => acc * dim, 1);
     const output = new Float32Array(outputSize);
     
     for (let i = 0; i < outputSize; i++) {
@@ -614,7 +614,7 @@ export class HypergraphGrammarEngine {
    */
   private simulateDecompositionOperation(input: Tensor, transform: PatternTransformation): Tensor {
     // Simplified decomposition: distribute features across hierarchical structure
-    const outputSize = transform.outputShape.reduce((acc, dim) => acc * dim, 1);
+    const outputSize = transform.outputShape.reduce((acc: number, dim: number) => acc * dim, 1);
     const output = new Float32Array(outputSize);
     
     // Distribute input features across output dimensions

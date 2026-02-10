@@ -7,8 +7,8 @@ import { MemorySystemFactory } from './core/memory/memory-factory.js';
 import { TaskManager } from './core/task/task-manager.js';
 import { AiCoordinator } from './core/ai/ai-coordinator.js';
 import { AutonomyCoordinator } from './core/autonomy/coordinator.js';
-import { HealthMonitor } from 'marduk-ts/core/monitoring/health-monitor.js';
-import { MetricsCollector } from 'marduk-ts/core/monitoring/metrics-collector.js';
+// import { HealthMonitor } from 'marduk-ts/core/monitoring/health-monitor.js';
+// import { MetricsCollector } from 'marduk-ts/core/monitoring/metrics-collector.js';
 
 class OptimizationVisualizer {
   static visualizeCognitiveArchitecture(): void {

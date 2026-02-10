@@ -6,13 +6,13 @@ import { EventEmitter } from 'events';
 import { 
   MotorInterface, 
   EmbodimentComponent 
-} from '../interfaces/embodiment-interface';
+} from '../interfaces/embodiment-interface.js';
 import { 
   MotorCommand, 
   MotorType, 
   MotorConstraints,
   DataQuality 
-} from '../types/sensorimotor-types';
+} from '../types/sensorimotor-types.js';
 
 export abstract class BaseMotor extends EventEmitter implements MotorInterface {
   public readonly id: string;

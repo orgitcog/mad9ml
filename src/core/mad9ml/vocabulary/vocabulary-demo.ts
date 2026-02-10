@@ -283,11 +283,11 @@ async function runComprehensiveDemo(): Promise<void> {
   registry.addKernelHook(createPerformanceMonitoringHook());
   
   // Add event listeners
-  registry.addEventListener('item_registered', (event) => {
+  registry.addEventListener('item_registered', (event: any) => {
     console.log(`   🔗 Event: ${event.type} - ${event.itemId}`);
   });
   
-  registry.addEventListener('inconsistency_detected', (event) => {
+  registry.addEventListener('inconsistency_detected', (event: any) => {
     console.log(`   ⚠️ Inconsistency detected: ${event.data.reports.length} issues`);
   });
   
@@ -311,7 +311,7 @@ async function runComprehensiveDemo(): Promise<void> {
         console.log(`   ❌ Failed to register: ${partial.name}`);
       }
     } catch (error) {
-      console.log(`   ❌ Error registering ${partial.name}: ${error.message}`);
+      console.log(`   ❌ Error registering ${partial.name}: ${(error as Error).message}`);
     }
   }
   
@@ -348,19 +348,19 @@ async function runComprehensiveDemo(): Promise<void> {
   console.log('-------------------------------');
   
   const mathOps = registry.findItems({ category: 'math' });
-  console.log(`   Math Operations: ${mathOps.map(i => i.name).join(', ')}`);
+  console.log(`   Math Operations: ${mathOps.map((i: any) => i.name).join(', ')}`);
   
   const memoryItems = registry.findItems({ tags: ['memory'] });
-  console.log(`   Memory Items: ${memoryItems.map(i => i.name).join(', ')}`);
+  console.log(`   Memory Items: ${memoryItems.map((i: any) => i.name).join(', ')}`);
   
   const attentionItems = registry.findItems({ tags: ['attention'] });
-  console.log(`   Attention Items: ${attentionItems.map(i => i.name).join(', ')}`);
+  console.log(`   Attention Items: ${attentionItems.map((i: any) => i.name).join(', ')}`);
   
   const experimentalItems = registry.findItems({ implementationStatus: 'experimental' });
-  console.log(`   Experimental Items: ${experimentalItems.map(i => i.name).join(', ')}`);
+  console.log(`   Experimental Items: ${experimentalItems.map((i: any) => i.name).join(', ')}`);
   
   const stubItems = registry.findItems({ implementationStatus: 'stub' });
-  console.log(`   Stub Items: ${stubItems.map(i => i.name).join(', ')}`);
+  console.log(`   Stub Items: ${stubItems.map((i: any) => i.name).join(', ')}`);
   console.log();
   
   // Step 5: Validation

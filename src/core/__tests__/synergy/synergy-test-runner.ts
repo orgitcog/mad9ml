@@ -103,12 +103,12 @@ class SynergyTestRunner {
 
           } catch (error) {
             failedTests++;
-            console.log(`    ❌ Error: ${error.message}`);
+            console.log(`    ❌ Error: ${(error as Error).message}`);
             workflowResults.push({
               workflowName: scenario,
               iteration: iteration,
               success: false,
-              error: error.message,
+              error: (error as Error).message,
               executionTime: 0
             });
           }
@@ -147,7 +147,7 @@ class SynergyTestRunner {
       };
 
     } catch (error) {
-      console.error(`💥 Test suite failed: ${error.message}`);
+      console.error(`💥 Test suite failed: ${(error as Error).message}`);
       throw error;
     }
   }
@@ -334,7 +334,7 @@ class SynergyTestRunner {
       paths.push(behaviorPath);
 
     } catch (error) {
-      console.warn(`⚠️  Failed to generate some visualizations: ${error.message}`);
+      console.warn(`⚠️  Failed to generate some visualizations: ${(error as Error).message}`);
     }
 
     return paths;
@@ -483,7 +483,7 @@ async function runSynergyTestsCLI(): Promise<void> {
     }
 
   } catch (error) {
-    console.error('\n💥 Test execution failed:', error.message);
+    console.error('\n💥 Test execution failed:', (error as Error).message);
     process.exit(1);
   }
 }

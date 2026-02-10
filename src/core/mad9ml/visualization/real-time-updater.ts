@@ -51,7 +51,7 @@ export class RealTimeUpdater {
   /**
    * Check if updates are running
    */
-  public isRunning(): boolean {
+  public getIsRunning(): boolean {
     return this.isRunning;
   }
 
@@ -68,7 +68,7 @@ export class RealTimeUpdater {
   public setConfig(config: Partial<RealTimeConfig>): void {
     this.config = { ...this.config, ...config };
     
-    if (this.isRunning) {
+    if (this.getIsRunning()) {
       this.stop();
       this.start();
     }

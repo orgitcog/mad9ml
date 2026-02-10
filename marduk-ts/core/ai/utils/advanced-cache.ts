@@ -6,7 +6,7 @@
  * - Time-aware: Considers both access patterns and age
  */
 
-import LRUCache from 'lru-cache';
+import { LRUCache } from 'lru-cache';
 
 /**
  * Base cache item interface for all cache strategies

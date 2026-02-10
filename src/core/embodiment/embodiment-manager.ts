@@ -10,13 +10,13 @@ import {
   PSytemIntegrator,
   MetaCognitiveMonitor,
   EmbodimentComponent 
-} from './interfaces/embodiment-interface';
+} from './interfaces/embodiment-interface.js';
 import { 
   EmbodimentConfig,
   SensorData,
   MotorCommand,
   SensorimotorDiagnostics 
-} from './types/sensorimotor-types';
+} from './types/sensorimotor-types.js';
 
 export class SensorimotorManager extends EventEmitter implements EmbodimentManager {
   public readonly config: EmbodimentConfig;

@@ -671,5 +671,3 @@ export class CognitiveKernelDefinitions {
 
   // Additional kernels will be added in the next part...
 }
-
-export { CognitiveKernelDefinitions };
